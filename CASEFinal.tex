@@ -33,7 +33,7 @@
 }
 
 
-\author{Deepak Gopinath$^{1,3}$, Siddarth Jain$^{2,3}$ and Brenna D. Argall$^{2,3}$% <-this % stops a space
+\author{Deepak Gopinath$^{1,3}$, Siddarth Jain$^{2,3}$ and Brenna D. Argall$^{2,3,4}$% <-this % stops a space
 	%\thanks{*This work was not supported by any organization}% <-this % stops a space
 	\thanks{$^{1}$Department of Mechanical Engineering,
 		Northwestern University, Evanston, IL, 60208, USA
@@ -51,6 +51,10 @@
 		%	Department of Electrical Engineering and Computer Science, 
 		%	Northwestern University, Evanston, IL, 60208, USA
 		Rehabilitation Institute of Chicago, Chicago IL, 60211 USA
+	}
+	\thanks{$^{4}$
+			Department of Physical Medicine and Rehabilitation, 
+			Northwestern University, Feinberg School of Medicine, Chicago IL, 60611 USA	
 	}
 	\thanks{\hspace{-0.5cm} {\tt\small deepakedakkattilgopinath2015@u.northwestern.edu}}%
 	\thanks{ \hspace{-0.5cm}{\tt\small sidd@u.northwestern.edu}}%
@@ -102,7 +106,7 @@
 	and increasing the ability to perform activities of daily life.
 	% in an easier way. 
 	However, for many, the control of such devices remains a
-	challenge---for example, due to their physical impairments or limitations of the control interfaces. Such interfaces often issue control signals that are low-dimensional, discrete and operate in different modes, each of which correspond to different parts of the control space that must be switched between. The introduction of
+	challenge---for example, due to their physical impairments or limitations of the control interfaces. Limited interfaces issue control signals that are low-dimensional, discrete and operate in modes which correspond to different parts of the control space that must be switched between. The introduction of
 	partial autonomy to these devices---in which the control is shared
 	between the human and robotics autonomy---aims to help reduce the cognitive and physical burden on the user. 
 	
@@ -112,9 +116,9 @@
 	Since users differ in their
 	physical abilities and desired amount of assistance, \textit{customization} of the amount of assistance is critical for the adoption of assistive shared-control systems.
 	Predefined assistance levels 
-	can provide good starting points but may not remain optimal for the user in the long term. For example, the subject's abilities will likely be changing---either degrading (e.g.~due to degenerative disease) or improving (e.g.~due to successful rehabilitation). As a result of which the need for assistance may be increased or decreased. One way to accomplish customization is to tune the system parameters which will bring about a change in the human-robot interaction and the final behavior. The aim is to optimize the human-robot interaction during task performance. A simple choice of optimality criterion is to consider task-related performance metrics such as minimizing the time taken and energy expended. 
+	can provide good starting points but may not remain optimal for the user in the long term. For example, the subject's abilities will likely be changing---either degrading (e.g.~due to degenerative disease) or improving (e.g.~due to successful rehabilitation). As a result, the need for assistance may increase or decrease. One way to accomplish customization is to tune the system parameters which will bring about a change in the human-robot interaction and the final behavior. The aim is to optimize the human-robot interaction during task performance. A straightforward choice of optimality criterion is to consider task-related performance metrics such as minimizing the time taken and energy expended. Such metrics however may not capture user-related metrics like satisfaction.
 	
-	Our insight is that if we entrust the task of customization to the users, they likely will tune the system in such a way that the optimal interaction---according to their personal optimality criterion---will emerge. Moreover, the user-driven customization of assistance may be task-dependent in addition to being user-dependent. 
+	Our insight is that if we entrust the task of customization to the users, they likely will tune the system in such a way that the optimal interaction---according to their personal optimality criterion---will emerge. Moreover, the user-driven customization of assistance may be user-dependent in addition to being task-dependent. 
 	%Our proposed formalism furthermore allows for time varying interaction. 
 	
 	To ground our formalism, we present a first implementation, in which the reasoning between the user control
@@ -153,7 +157,7 @@
 	blending paradigms often are employed for behaviors like
 	obstacle avoidance~\cite{12smc-carlson}. Control sharing in case of robotic arms
 	most commonly involves user-specification of a target (such
-	as an object)~\cite{jain2010assistive} or pose correction~\cite{04ar-bien}, with the robot autonomously generating the motion commands. 
+	as an object)~\cite{jain2010assistive} or pose correction~\cite{04ar-bien}, and the robot autonomously generates the motion commands. 
 	Approaches that partition the control space
 	may, for example, place the control of end-effector position in
 	$z$ with the human and in $x,y$ with the autonomy~\cite{05uais-driessen}.
@@ -166,13 +170,12 @@
 	%
 	%There exist approaches that studies customizable autonomy levels and blending of user's commands with the autonomy control commands~\cite{Dragan_2012_7224, li2011dynamic}.  Additionally, the amount of control blending can be determined using a arbitration function of robot's confidence in its prediction of user's target~\cite{dragan2012formalizing}. In our work, the arbitration function is of the same form as in~\cite{dragan2012formalizing} and we target to customize the assistance in a easier and interactive way, via direct interaction with the user.
 	
-	Optimization techniques have been adopted to generate different strategies for control sharing; for example, formulating the problem as a POMDP and inferring a distribution over goals from user commands via Maximum Entropy Inverse Optimal Control~\cite{javdani2015shared}, using pseudo-navigation functions for collaborative control in robotic wheelchairs~\cite{fernandez2015towards} or concatenating energy-optimal motion primitives to create optimal trajectories~\cite{lawitzky2013trajectory}. Although these approaches result in improved task performance (task completion time, control effort), the assistance schemes are mixed in terms of user acceptance. In particular, there are instances of assistance resulting in higher user dissatisfaction~\cite{javdani2015shared}, and users preferring to be in control and more cautious~\cite{lawitzky2013trajectory}. In other studies users find the assistance at times to be uncooperative and are willing to tolerate a loss of control only when there is a significant improvement in performance~\cite{you2012assisted}.
+	Optimization techniques have been adopted to generate different strategies for control sharing; for example, formulating the problem as a POMDP and inferring a distribution over goals~\cite{javdani2015shared}, using pseudo-navigation functions for collaborative control~\cite{fernandez2015towards} or concatenating energy-optimal motion primitives to create optimal trajectories~\cite{lawitzky2013trajectory}. Although these approaches result in improved task performance (completion time, control effort), the assistance schemes are mixed in terms of user acceptance. In particular, there are instances of assistance resulting in higher user dissatisfaction~\cite{javdani2015shared}, and users preferring to be in control and more cautious~\cite{lawitzky2013trajectory}. In other studies users find the assistance at times to be uncooperative and tolerate a loss of control only for a significant improvement in performance~\cite{you2012assisted}.
 	%Researchers have adopted different strategies for shared autonomy in assistive teleoperation; for example, using reactive potential field and sample based planning to generate robot policies incorporating dynamic constraints (e.g.~collision avoidance) and. ~\cite{you2012assisted}. 
 	
-	In an attempt to construct more realistic cost functions, other researchers incorporate a measure of ``discomfort" into the optimization cost function. Inspired by research in design (transportation, elevator etc.) a discomfort cost function is formulated~\cite{gulati2009framework}, however, the specific form of the cost function is domain dependent and is not generalizable to other assistive devices such as robotic arms. 
-	%Trajectory generation have been explored in Experimental evaluation revealed that with the proposed scheme the human effort required to accomplish a task was drastically reduced, however the subjects became more cautious and opted for higher execution times as the optimal trajectories ran really close to the walls and corners of the virtual maze in which the scheme was tested. 
+	In an attempt to construct more realistic cost functions, others inspired by design research incorporate a measure of ``discomfort" into the optimization cost function~\cite{gulati2009framework}. However, the specific form of the cost function is domain dependent and is not generalizable to other assistive devices such as robotic arms. 
 	
-	Despite an improvement in task performance, none of the above cost function formulations were able to guarantee high user satisfaction (with the exception of domain-specific~\cite{gulati2009framework}). The need for higher user satisfaction is crucial for the acceptance of robot autonomy by the end-users in the assistive domain. This gap motivates our approach to engage the end-user in the optimization procedure.
+	Despite an improvement in task performance, none of the above cost function formulations were able to guarantee high user satisfaction (with the exception of domain-specific discomfort~\cite{gulati2009framework}). The need for higher user satisfaction is crucial for the acceptance of robot autonomy by the end-users in the assistive domain. This gap motivates our approach to engage the end-user in the optimization procedure.
 	
 	\section{PROPOSED FRAMEWORK} \label{pf}
 	
@@ -187,18 +190,18 @@
 	Let $\boldsymbol{\theta}(t)$ be the set of tunable parameters that will affect the amount of control shared between the human and the robot. 
 	The other control inputs to the system are $\boldsymbol{u}_h(t)$ and $\boldsymbol{u}_r(t)$, the control commands generated respectively by the user and autonomous robot policy at time $t$. 
 	
-	The control signal from the robot autonomy is generated by a function $f(\cdot) \in \mathcal{F}$, 
+	The control signal from the robot autonomy is generated by a function $f_{r}(\cdot) \in \mathcal{F}_{r}$, 
 	\begin{equation}
-		\boldsymbol{u}_r(t) \leftarrow f(\boldsymbol{x}(t))
+		\boldsymbol{u}_r(t) \leftarrow f_{r}(\boldsymbol{x}(t))
 	\end{equation}
-	where $\mathcal{F}$ is the set of all control behaviors corresponding to different tasks.
+	where $\mathcal{F}_{r}$ is the set of all control behaviors corresponding to different tasks.
 	
-	We assume that the control command $\boldsymbol{u}_h(t)$ is generated by a function of  $g(\cdot) \in \mathcal{G}$,
+	We assume that the control command $\boldsymbol{u}_h(t)$ is generated by a function of  $f_{h}(\cdot) \in \mathcal{F}_{h}$,
 	\begin{equation}
-		\boldsymbol{u}_h(t) \leftarrow g(\boldsymbol{x}(t))
+		\boldsymbol{u}_h(t) \leftarrow f_{h}(\boldsymbol{x}(t))
 	\end{equation}
-	where $\mathcal{G}$ is the set of user behaviors corresponding to different tasks. $g(\cdot)$ is simply a symbolic representation of the mapping function that generates $\boldsymbol{u}_{h}(t)$ and is completely unknown to the autonomous system.
-	The sole dependence of $\boldsymbol{u}_h(t)$ on $\boldsymbol{x}(t)$ is an approximation because there may be a large number of unobserved variables (e.g~fatigue or personal satisfaction) affecting the user's decision. 
+	where $\mathcal{F}_{h}$ is the set of user behaviors corresponding to different tasks. $f_{h}(\cdot)$ is simply a symbolic representation of the mapping function that generates $\boldsymbol{u}_{h}(t)$ and is completely unknown to the autonomous system.
+	The sole dependence of $\boldsymbol{u}_h(t)$ on $\boldsymbol{x}(t)$ is an approximation because there may be a large number of unobserved variables (e.g.~fatigue or personal satisfaction) affecting the user's control. 
 	
 	The shared control system makes use of function $\boldsymbol{\beta}(\cdot)$, parameterized by $\boldsymbol{\theta}$
 	\begin{equation}
@@ -210,27 +213,27 @@
 	\begin{equation}
 		\boldsymbol{\dot{x}}(t) \leftarrow \boldsymbol{a}(\boldsymbol{x}(t), \boldsymbol{\theta}(t), \boldsymbol{u}_h(t), \boldsymbol{u}_r(t), t)
 	\end{equation}
-	where $\boldsymbol{a}(\cdot)$ is in general a non-linear, time--varying function. Note that in this formulation the parameters $\boldsymbol{\theta}(t)$ are treated in the \textit{same way} as the other control signals.
+	where $\boldsymbol{a}(\cdot)$ is in general a non-linear, time-varying function. Note that in this formulation the parameters $\boldsymbol{\theta}(t)$ are treated in the \textit{same way} as the other control signals.
 	The problem of finding the set of parameters $\boldsymbol{\theta}(t)$ that will generate the optimal human-robot interaction and task performance (as determined by a cost function) thus may be formulated as an optimal control problem.
 	
-	Optimal control models assume the existence of some kind of cost function being optimized during task performance.\footnote{For example, arm trajectories generated by uninjured humans during reaching tasks have been reproduced using a cost function composed of total torque generated at the joints~\cite{uno1989formation} or total jerk of the end effector (hand)~\cite{flash1985coordination}.} In general, the cost function $\boldsymbol{J}$ can be written as,  
+	Optimal control models assume the existence of some kind of cost function being optimized during task performance.\footnote{For example, arm trajectories generated by uninjured humans during reaching tasks are reproduced using cost functions composed of torque generated at the joints~\cite{uno1989formation} or jerk of the end effector (hand)~\cite{flash1985coordination}.} In general, the cost function $\boldsymbol{J}$ can be written as,  
 	\begin{equation}
 		\boldsymbol{J} \leftarrow \boldsymbol{h}(\boldsymbol{x}(t_f), t_f) + \int\limits_{t_0}^{t_f} \boldsymbol{k}(\boldsymbol{x}(t), \boldsymbol{u}(t), t)dt
 	\end{equation}
-where the first term corresponds to a terminal cost (e.g~proximity of the end pose to the target pose) and the second term corresponds to a measure of internal cost (e.g~the energy expended during task execution, task completion time, etc). The true cost function, however likely is more complex, and could include additional factors such as user satisfaction. The state boundary conditions are given by 
+where the first term corresponds to a terminal cost (e.g~proximity of the end pose to the target pose) and the second term corresponds to a measure of internal cost (e.g~energy expended, completion time, etc). The true cost function however likely is more complex, and could include additional factors such as user satisfaction. The state boundary conditions are given by 
 	$
 	\boldsymbol{x}(t_0)	= x_0 
 	$ and
 	$
 	\boldsymbol{x}(t_f) = x_f
-	$
-	where, $t_0$ and $t_f$ are the times at which the robot is in the initial state $x_0$ and final state $x_f$. 
+	$,
+	where $t_0$ and $t_f$ are the times at which the robot is in the initial state $x_0$ and final state $x_f$. 
 	The parameter constraints are
 	$
 	\boldsymbol{\theta}_{min} \leq \boldsymbol{\theta}(t) \leq \boldsymbol{\theta}_{max}
 	$.
 	
-	The elements of the framework $f(\cdot)$, $g(\cdot)$, $\beta(\cdot)$ and 
+	The elements of the framework $f_{r}(\cdot)$, $f_{h}(\cdot)$, $\beta(\cdot)$ and 
 	$a(\cdot)$ are system-specific, and different choices of these functions will have drastically different impact on task performance and user satisfaction. Moreover, the impact is anticipated to be all the greater on motor-impaired subjects.
 	\begin{figure}
 		\begin{center}
@@ -244,9 +247,9 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	\subsection{Optimization}
 	Typically optimization is performed over all control signals that are inputs to the system. In our system, however, the control commands from the human and the robot ($ \boldsymbol{u}_h(t), \boldsymbol{u}_r(t)$) are treated as given quantities, and the goal rather is to optimize the interaction parameters $\boldsymbol{\theta}(t)$. Therefore, optimization is performed only with respect to a subspace ($\boldsymbol{\theta}(t)$) of the entire control space. 
 	
-	In this work, we furthermore make no attempt to determine the exact nature of the cost function $\boldsymbol{J}$. There might be a myriad of unmeasurable factors influencing the cost function, and determining the exact mathematical form for the cost function likely is an intractable problem. Making any kind of approximation to simplify the cost function in turn will affect the robustness and efficacy of the assistive system. Since we do not want to reduce the assistive capabilities of our system, and we have a human in the loop, our insight is that the optimization task can be performed by the user him/herself, instead of adopting standard non-linear optimization algorithms. Thus there is no need to concretely define $J$ and the user tunes the parameters $\boldsymbol{\theta}(t)$ until optimal behavior is achieved. 
+	In this work, we furthermore make no attempt to determine the exact nature of the cost function $\boldsymbol{J}$. There might be a myriad of unmeasurable factors influencing the cost function, and determining the exact mathematical form for the cost function likely is an intractable problem. Making any kind of approximation to simplify the cost function in turn will affect the robustness and efficacy of the assistive system. Since we do not want to reduce the assistive capabilities of our system, and we have a human in the loop, our insight is that the optimization task can be performed by the user him/herself, instead of adopting standard non-linear optimization algorithms. Thus there is no need to concretely define $J$ and the user tunes the parameters $\boldsymbol{\theta}(t)$ until the desired behavior is achieved. 
 	
-	In this user-driven customization system, the overall effect of parameter tuning is that of changing the assistance offered by the robot. The exact specific of the optimization procedure is described in detail in Section \ref{UDOAP}.	
+	In this user-driven customization system, the overall effect of parameter tuning is that of changing the assistance offered by the robot. The specific optimization procedure is described in detail in Section \ref{UDOAP}.	
 	
 	\section{SYSTEM IMPLEMENTATION} \label{si}
 	
@@ -272,7 +275,7 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	and $\alpha_{\boldsymbol{\theta}}=1$ to full autonomy.
 	
 	The majority of \textit{arbitration functions} $\alpha_{\boldsymbol{\theta}}$ can be reduced to the functional
-	form pictured in Figure~\ref{PAF} \cite{dragan2012formalizing}. This particular function is characterized by a set of three parameters $\{\theta_{1}, \theta_{2}, \theta_{3}\}$ and independent variable $c(t)$. The parameter set determines:
+	form pictured in Figure~\ref{PAF} \cite{dragan2012formalizing}, characterized by a set of three parameters $\{\theta_{1}, \theta_{2}, \theta_{3}\}$ and independent variable $c(t)$. The parameter set determines:
 	\begin{itemize}
 		\item $\theta_{1}$: The minimum value of $c(t)$ above which control blending is performed. 
 		\vspace{0.1cm}
@@ -296,7 +299,7 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	The independent variable $c(t)$ in our implementation is discussed in Sec \ref{ECV}. 
 	
 	In our pilot study, the parameters were tuned only between tasks and were unchanged during task execution, and so $\boldsymbol{\theta}_{i}(t) = \boldsymbol{\theta}_{i}(t_{0}),\; \forall t \in [t_{0}, t_{f}]$.
-	The arbitrated signal $\boldsymbol{u}(t)$ was the final velocity of the end-effector in Cartesian space, converted to joint-space velocities via inverse kinematics.
+	The arbitrated signal $\boldsymbol{u}(t)$ was the velocity of the end-effector in Cartesian space, converted to joint-space velocities via inverse kinematics.
 	%\vspace{-0.22cm}
 	\subsection{User--Driven Optimization of the Arbitration Parameters} \label{UDOAP}
 	
@@ -348,7 +351,7 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	inferred target location at time $t$, and $c(t) \in [0,1]$.
 	The first term in (\ref{eq:conf}) 
 	provides a measure of
-	agreement between the user-generated commands and robot-generated commands. 
+	agreement between the user-generated commands and robot-generated commands.\footnote{Commands $\boldsymbol{u}_{h}(t)$ and $\boldsymbol{u}_{r}(t)$ are first smoothed using a moving average filter ($0.6s$), so that small command changes do not affect the confidence measure drastically.}
 	%% This measure of alignment is
 	%% important for computing the confidence measure because, the robot
 	%% policy was originally derived from human demonstrations and takes into
@@ -357,18 +360,17 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	%, which is another good indicator of the user's intended goal.
 	%The exponential ensures that the distance measure is in the range 0 to 1. 
 	Parameters $\boldsymbol{w_{1}}$ and $\boldsymbol{w_{2}}$ are
-	task-specific weights.\footnote{
-		Prior to computing $c(t)$ the control commands $\boldsymbol{u}_{h}(t)$ and $\boldsymbol{u}_{r}(t)$ are smoothed using a moving average filter ($0.6s$), so that small command changes do not affect the confidence measure drastically.}
+	task-specific weights.
 	
 	At each execution step this confidence measure is computed for all
-	candidate goals in the scene, $\lambda \in \Lambda$, resulting in a
+	candidate goals in the scene, $g \in \mathcal{G}$, resulting in a
 	%. Thus, we have a
-	distribution of confidences $c_\lambda(t) \in \mathcal{C}$
+	distribution of confidences $c_{g}(t) \in \mathcal{C}$
 	%, \forall g \in \mathcal{G}$ 
-	over the candidate goals.\footnote{In this study the candidate goals are objects placed at predefined positions in front of the robot. Our system is also able to autonomously perceive object positions and use these as candidate goals.} To compute these confidences,
-	each control behavior $f_\lambda$ generates a command (where $f_\lambda$ aims to
-	reach candidate goal $\lambda$) which is used in the calculation of
-	$c_\lambda(t)$ according to (\ref{eq:conf}).
+	over the candidate goals.\footnote{In the pilot study the candidate goals are objects placed at predefined positions in front of the robot. Our system also is able to autonomously perceive object positions and use these as candidate goals.} To compute these confidences,
+	each control behavior $f_g$ generates a command (where $f_g$ aims to
+	reach candidate goal $g$) which is used in the calculation of
+	$c_g(t)$ according to (\ref{eq:conf}).
 	The command associated with the target that has the highest computed confidence is selected.
 	\vspace*{-0.15cm}
 	\subsection{Control Interface and Mapping} \label{CIM}
@@ -422,7 +424,7 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	For each task, a set of $N$ demonstrations are collected by
 	kinesthetically moving the robot. Demonstrations consist of pairs of joint angles $\boldsymbol{x}(t) \in \mathbb{R}^{6}$ and joint velocities $\boldsymbol{\dot{x}}(t) \in \mathbb{R}^{6}$. The SEDS algorithm learns the parameters of a time-independent dynamical system which models the joint velocities as a function of joint angles, and so
 	\begin{equation}
-		\boldsymbol{\dot{x}}(t) \leftarrow f(\boldsymbol{x}(t))
+		\boldsymbol{\dot{x}}(t) \leftarrow f_{r}(\boldsymbol{x}(t))
 	\end{equation}
 	where $\boldsymbol{u}_{r}(t) \triangleq K(\boldsymbol{\dot{x}}(t))$ and $K(\cdot)$ is the forward kinematics of the robot arm (since human teleoperation and control blending both happen in the  end-effector Cartesian space). The dynamical system ensures that the policy exists everywhere in the workspace, and that the robot trajectories follow the general contour of the task demonstrations. 
 	
