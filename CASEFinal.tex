@@ -15,6 +15,7 @@
 \usepackage{graphics} % for pdf, bitmapped graphics files
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb,latexsym,float,epsfig,subfigure}
+\usepackage{url}
 % \usepackage[export]{adjustbox}
 %\usepackage{epsfig} % for postscript graphics files
 %\usepackage{mathptmx} % assumes new font selection scheme installed
@@ -33,7 +34,7 @@
 }
 
 
-\author{Deepak Gopinath$^{1,3}$, Siddarth Jain$^{2,3}$ and Brenna D. Argall$^{2,3,4}$% <-this % stops a space
+\author{Deepak Gopinath$^{1,3}$, Siddarth Jain$^{2,3}$ and Brenna D. Argall$^{1\text{-}4}$% <-this % stops a space
 	%\thanks{*This work was not supported by any organization}% <-this % stops a space
 	\thanks{$^{1}$Department of Mechanical Engineering,
 		Northwestern University, Evanston, IL, 60208, USA
@@ -378,7 +379,7 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	\begin{figure*}[t]
 		\centering
 		\includegraphics[width = 1\hsize]{./finalfigures/Figure3.png}
-		\caption{Study tasks  performed by an spinal cord injury (SCI) participant. \textit{Left to right:} Simple Reaching (R), Reaching for Grasping (RfG), Reaching for Scooping (RfS).}
+		\caption{Study tasks  performed by SCI participant. \textit{Left to right:} Simple Reaching (R), Reaching for Grasping (RfG), Reaching for Scooping (RfS).}
 		\label{TOne}
 	\end{figure*}
 	The first paradigm uses only two of the three axes (no twist)---because many
@@ -418,15 +419,13 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	policies which are defined in
 	all parts of the state space.
 	
-	Our current implementation favors
-	dynamical systems formulations.
-	The autonomous robot policies are derived from human demonstrations using a Learning from Demonstration approach known as \textit{Stable Estimator of Dynamical Systems (SEDS)} \cite{khansari2011learning}. In SEDS, the target poses are modeled as attractors of a dynamical system. 
-	For each task, a set of $N$ demonstrations are collected by
+	Our current implementation favors dynamical systems formulations.
+	The autonomous robot policies are learned from human demonstrations using an approach known as \textit{Stable Estimator of Dynamical Systems (SEDS)} \cite{khansari2011learning}. In SEDS, the target poses are modeled as attractors of a dynamical system. For each task, a set of $N$ demonstrations are collected by
 	kinesthetically moving the robot. Demonstrations consist of pairs of joint angles $\boldsymbol{x}(t) \in \mathbb{R}^{6}$ and joint velocities $\boldsymbol{\dot{x}}(t) \in \mathbb{R}^{6}$. The SEDS algorithm learns the parameters of a time-independent dynamical system which models the joint velocities as a function of joint angles, and so
 	\begin{equation}
 		\boldsymbol{\dot{x}}(t) \leftarrow f_{r}(\boldsymbol{x}(t))
 	\end{equation}
-	where $\boldsymbol{u}_{r}(t) \triangleq K(\boldsymbol{\dot{x}}(t))$ and $K(\cdot)$ is the forward kinematics of the robot arm (since human teleoperation and control blending both happen in the  end-effector Cartesian space). The dynamical system ensures that the policy exists everywhere in the workspace, and that the robot trajectories follow the general contour of the task demonstrations. 
+	and $\boldsymbol{u}_{r}(t) \triangleq K(\boldsymbol{\dot{x}}(t))$ where $K(\cdot)$ is the forward kinematics of the robot arm (since human teleoperation and control blending both happen in the  end-effector Cartesian space). The dynamical system ensures that the policy exists everywhere in the workspace, and that the robot trajectories follow the general contour of the task demonstrations. 
 	
 	\section{PILOT STUDY METHODS} \label{PSM}
 	
@@ -473,7 +472,7 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	\vspace{0.1cm}
 	\noindent{\uline{\textit{Subjects:}}}  For this exploratory
 	study 17 subjects were recruited---13 uninjured control subjects (mean
-	age: $26 \pm 4$, 8 males and 5 females) and 4 SCI subjects (mean age: $35 \pm 14$, all males, C3-C5 injury
+	age: $26 \pm 4$, 8 males and 5 females) and 4 spinal cord injury (SCI) subjects (mean age: $35 \pm 14$, all males, C3-C5 injury
 	levels). Seven of the uninjured subjects (5 males, 2 females) and
 	3 of the SCI subjects used the \textit{3D} interface paradigm, and the remaining
 	subjects used the \textit{2D} paradigm.  All participants gave their
@@ -491,15 +490,14 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	Before the RfG and RfS trials, the user was first asked to operate the system in full teleoperation mode (\textit{tel}) and also under three predefined assistance levels (\textit{min, mid} and \textit{max}). After this phase, the subject was given the option to customize the assistance level. Changes in assistance levels were communicated verbally to the system operator resulting in the parameter changes outlined in Table I. The user then tested the customized assistance level by executing the task. This customization procedure was repeated until the user was satisfied and lasted on average 10 and a maximum of 15 minutes, resulting in assistance level \textit{custom}. Data collection began only after this customization process was completed. Three trials were collected for \textit{min, max} and \textit{custom} assistance levels.\footnote{For one SCI participant one less trial was recorded for \textit{min} assistance level during the first task due to a clerical error.} A typical session lasted approximately 1-1.5 hours. 
 	For the first (non-practice) task, the baseline from which customization began was the \textit{mid} level assistance, with level \textit{custom} being the result after customization. For the second task, customization began at this level \textit{custom} from the first task as the baseline, with the option to further customize resulting in level \textit{custom} for the second task.
 	
-	\noindent{\uline{\textit{Metrics:}}} A number of objective metrics evaluated this study. \textit{Task Completion time} is the amount of time spent accomplishing a task. \textit{Mode Switches} refer to the number of times the subject switched between the various modes of the control interface (Table \ref{tbl:modes}). Mode switch additionally is an indirect measure of the effort put forth by the user. At the
-		end of the study, subjective data was gathered via a brief
-		questionnaire. To explore subject opinions, users were given
-		statements about the assistance system, and asked to rate
-		each one of them on a 7-point Likert scale (1 is low, 7 is higher), according to
-		their agreement. The questions primarily concerned the utility value of the assistance system (\textit{U1}), the system's accuracy in goal perception (\textit{CA1}) and its understanding of what the user is trying to accomplish (\textit{CA2}) and the contribution from the user (\textit{CO1}) and the system (\textit{CO2}) in task accomplishment.
+	\noindent{\uline{\textit{Metrics:}}} A number of objective metrics evaluated this study. \textit{Task Completion time} was the amount of time spent accomplishing a task. \textit{Mode Switches} refers to the number of times the subject switched between the various modes of the control interface (Table \ref{tbl:modes}). Mode switches additionally is an indirect measure of the effort put forth by the user. At the
+	end of the study, subjective data was gathered via a brief
+	questionnaire. Users were given
+	statements about the assistance system to rate on a 7-point Likert scale (1 is low, 7 is high), according to
+	their agreement. The questions primarily concerned the utility value of the assistance system (\textit{U1}), the system's accuracy in goal perception (\textit{CA1}) and its understanding of what the user is trying to accomplish (\textit{CA2}), and the contribution from the user (\textit{CO1}) and the system (\textit{CO2}) in task accomplishment.
 	
 	\section{RESULTS} \label{RES}
-	Here we report the results of our pilot study. An improvement in task performance with customization is demonstrated, and a number of other interesting observations are noted. Task performance metrics for different assistance levels (denoted by \textit{min}, \textit{max} and \textit{custom} in the plots) and teleoperation (\textit{tel)} are analyzed across different subject groups, tasks and control interfaces. Note that the \textit{custom} assistance level always lies in between (or is equal to) \textit{min} and \textit{max}. 
+	Here we report the results of our pilot study.\footnote{The video of the study can be found at \url{http://argallab.smpp.northwestern.edu/index.php/publications/}} An improvement in task performance with customization is demonstrated, and a number of other interesting observations are noted. Task performance metrics for different assistance levels (denoted by \textit{min}, \textit{max} and \textit{custom} in the plots) and teleoperation (\textit{tel)} are analyzed across different subject groups, tasks and control interfaces. Note that the \textit{custom} assistance level always lies in between (or is equal to) \textit{min} and \textit{max}. 
 	Statistical significance is determined by Welch t-tests for Figures~\ref{PlotOne}-\ref{PlotTwo} and two sided Wilcoxon Rank-Sum Test for Figure~\ref{RCAP}, where (***) indicates $p<0.001$, (**) $p<0.01$ and (*) $p<0.05$.
 	\subsection{Observations across Uninjured and SCI subjects}
 	\noindent{\uline{\textit{Insight into Cost Function:}}}
@@ -508,11 +506,11 @@ where the first term corresponds to a terminal cost (e.g~proximity of the end po
 	Thus, it is not uniformly the case that mode switches are minimized from low to high assistance. 
 	
 	%\vspace*{-0.09cm}
-	This  provides insight that the true cost function that the user is optimizing is more complex than a simple time--optimal or minimum--effort cost function. 
+	This  provides insight that the true cost function that the user is optimizing is more complex than a simple time-optimal or minimum-effort cost function. 
 	
 	\vspace{0.1cm}
 	\noindent{\uline{\textit{Task Performance:}}} 
-	In Figure \ref{PlotOne} (first column), the difference between task completion times for uninjured and SCI subjects drops steadily from \textit{tel} to \textit{custom} assistance levels. The t-tests revealed that while the difference between uninjured and SCI was statistically significant for both \textit{tel} ($p$ = $5.1e$-$4$) and \textit{min} ($p$ = $6.5e$-$5$), this difference disappeared with the \textit{max} ($p$ = $0.027$) and \textit{custom} ($p$ = $0.096$) assistance levels. That is, with increased assistance, the performance of SCI subjects was comparable to that of uninjured subjects and this was \textit{maximized} under customization. The variance in the data also \textit{decreases} with customized assistance, showing the performance to become more consistent. 
+	In Figure \ref{PlotOne} (first column), the difference between uninjured and SCI subjects' task completion times drops steadily from \textit{tel} to \textit{custom} assistance levels. The t-tests revealed that while the difference between uninjured and SCI was statistically significant for both \textit{tel} ($p$ = $5.1e$-$4$) and \textit{min} ($p$ = $6.5e$-$5$), this difference disappeared with the \textit{max} ($p$ = $0.027$) and \textit{custom} ($p$ = $0.096$) assistance levels. That is, with increased assistance, the performance of SCI subjects was comparable to that of uninjured subjects and this was \textit{maximized} under customization. The variance in the data also \textit{decreases} with customized assistance, showing the performance to become more consistent. 
 	
 	Interestingly, for mode switches there was no statistical difference between uninjured and SCI subject data for any of the assistance levels. 
 	This suggests that the number of mode switches is primarily determined by the nature of the task and control interface, and not the state of injury. However, SCI subjects do take more time than uninjured subjects to perform the same number of mode switches. 
