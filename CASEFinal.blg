@@ -5,42 +5,42 @@ The style file: ieeetr.bst
 Database file #1: CASEFinal.bib
 You've used 19 entries,
             1876 wiz_defined-function locations,
-            587 strings with 7574 characters,
-and the built_in function-call counts, 5566 in all, are:
-= -- 514
+            586 strings with 7514 characters,
+and the built_in function-call counts, 5513 in all, are:
+= -- 505
 > -- 246
 < -- 0
 + -- 89
 - -- 70
-* -- 419
-:= -- 790
+* -- 414
+:= -- 785
 add.period$ -- 19
 call.type$ -- 19
 change.case$ -- 19
 chr.to.int$ -- 0
 cite$ -- 19
-duplicate$ -- 298
-empty$ -- 540
+duplicate$ -- 297
+empty$ -- 537
 format.name$ -- 70
-if$ -- 1349
+if$ -- 1338
 int.to.chr$ -- 0
 int.to.str$ -- 19
 missing$ -- 19
 newline$ -- 60
 num.names$ -- 19
-pop$ -- 77
+pop$ -- 78
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 184
+skip$ -- 180
 stack$ -- 0
-substring$ -- 354
-swap$ -- 112
+substring$ -- 342
+swap$ -- 110
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 50
+while$ -- 49
 width$ -- 21
-write$ -- 189
+write$ -- 188
